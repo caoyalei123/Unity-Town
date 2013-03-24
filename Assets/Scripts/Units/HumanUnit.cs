@@ -22,11 +22,15 @@ public class HumanUnit : Unit
 	
 	public override void Start()
 	{
+		base.Start();
+		
 		this.locationManager = (LocationManager) Camera.main.GetComponent("LocationManager");
 	}
 	
 	public override void Update()
 	{
+		base.Update();
+		
 		if (movingToLocation)
 		{
 			if (this.aStarAI.isPathComplete())
