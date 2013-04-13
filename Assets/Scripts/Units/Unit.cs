@@ -22,17 +22,12 @@ public class Unit : MonoBehaviour
 		this.hideIndicator();
 	}
 	
-	public virtual void Update()
-	{
-	
-	}
-	
 	public void OnMouseUp()
 	{
 		this.selectUnit();
 	}
 	
-	public void selectUnit()
+	public virtual void selectUnit()
 	{
 		this.showIndicator();
 		

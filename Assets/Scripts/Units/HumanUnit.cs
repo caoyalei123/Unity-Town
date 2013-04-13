@@ -16,6 +16,7 @@ public class HumanUnit : Unit
 	private AccessibleLocation targetLocation;
 	
 	private LocationManager locationManager;
+	private UnitManager unitManager;
 	
 	private float movementDelta = 0;
 	
@@ -29,12 +30,11 @@ public class HumanUnit : Unit
 		base.Start();
 		
 		this.locationManager = (LocationManager) Camera.main.GetComponent("LocationManager");
+		this.unitManager = (UnitManager) Camera.main.GetComponent("UnitManager");
 	}
 	
-	public override void Update()
+	public void Update()
 	{
-		base.Update();
-		
 		if (this.movingToLocation)
 		{
 			if (this.aStarAI.isPathComplete())
@@ -60,6 +60,13 @@ public class HumanUnit : Unit
 				}
 			}
 		}
+	}
+	
+	public override void selectUnit()
+	{
+		base.selectUnit();
+		
+		this.unitManager.selectHuman(this);
 	}
 	
 	public void goToCashMachine()
