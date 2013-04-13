@@ -6,23 +6,43 @@ using System.Collections;
  */
 public class UnitManager : MonoBehaviour
 {
+	private GUIManager guiManager;
+	
+	private HumanUnit selectedHuman = null;
+	
 	private GameObject[] humans;
 	
 	public void Awake()
 	{
+		this.guiManager = (GUIManager) Camera.main.GetComponent("GUIManager");
+		
 		this.humans = GameObject.FindGameObjectsWithTag(TagConstants.HUMANS);
 		
 		Debug.Log("Started with " + this.getHumanCount() + " humans.");
 	}
 	
-	public void Start()
+	/**
+	 * Selected a given human unit.
+	 */
+	public void selectHuman(HumanUnit human)
 	{
-	
+		this.selectedHuman = human;
+		
+		this.guiManager.showHumanUnitGUI(human);
 	}
 	
-	public void Update ()
+	/**
+	 * Deselects the currently selected human unit.
+	 */
+	public void deselectHuman()
 	{
-	
+		if (this.selectedHuman != null)
+		{
+			this.selectedHuman.deselectUnit();
+			this.selectedHuman = null;
+		}
+		
+		this.guiManager.hideHumanUnitGUI();
 	}
 	
 	public GameObject[] getHumans()
