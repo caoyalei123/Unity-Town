@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * Provides access to all existing locations.
+ */
 public class LocationManager : MonoBehaviour
 {
 	private GameObject[] shops;
@@ -8,10 +11,10 @@ public class LocationManager : MonoBehaviour
 	
 	public void Awake()
 	{
-		shops = GameObject.FindGameObjectsWithTag(TagConstants.SHOPS);
-		cashMachines = GameObject.FindGameObjectsWithTag(TagConstants.CASH_MACHINES);
+		this.shops = GameObject.FindGameObjectsWithTag(TagConstants.SHOPS);
+		this.cashMachines = GameObject.FindGameObjectsWithTag(TagConstants.CASH_MACHINES);
 		
-		Debug.Log("Started with " + getCashMachineCount() + " cash machines.");
+		Debug.Log("Started with " + this.getCashMachineCount() + " cash machines.");
 	}
 	
 	public void Start()

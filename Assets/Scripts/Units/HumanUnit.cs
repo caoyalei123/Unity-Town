@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * Represents a human unit.
+ * Human units visit shops and interact with items in the town.
+ */
 public class HumanUnit : Unit
 {
 	public string name;
@@ -31,7 +35,7 @@ public class HumanUnit : Unit
 	{
 		base.Update();
 		
-		if (movingToLocation)
+		if (this.movingToLocation)
 		{
 			if (this.aStarAI.isPathComplete())
 			{
@@ -40,13 +44,13 @@ public class HumanUnit : Unit
 		}
 		else
 		{
-			movementDelta += Time.deltaTime;
+			this.movementDelta += Time.deltaTime;
 			
-			if (movementDelta > HumanConstants.MOVEMENT_DELAY)
+			if (this.movementDelta > HumanConstants.MOVEMENT_DELAY)
 			{
-				movementDelta = 0;
+				this.movementDelta = 0;
 				
-				if (cash < HumanConstants.MIN_CASH)
+				if (this.cash < HumanConstants.MIN_CASH)
 				{
 					this.goToCashMachine();
 				}
@@ -62,7 +66,7 @@ public class HumanUnit : Unit
 	{
 		Debug.Log("Going to cash machine. cash = " + this.cash);
 		
-		GameObject cashMachine = locationManager.getCashMachines()[0];
+		GameObject cashMachine = this.locationManager.getCashMachines()[0];
 		
 		if (cashMachine == null)
 		{
@@ -79,7 +83,7 @@ public class HumanUnit : Unit
 	{
 		Debug.Log("Going to random shop. cash = " + this.cash);
 		
-		GameObject shop = locationManager.getRandomShop();
+		GameObject shop = this.locationManager.getRandomShop();
 		
 		if (shop == null)
 		{
@@ -94,19 +98,19 @@ public class HumanUnit : Unit
 	
 	private void goToLocation(AccessibleLocation location)
 	{
-		if (targetLocation == null)
+		if (location == null)
 		{
 			Debug.LogError("Attempted to move to a null target location.");
 			return;
 		}
 		
-		if (targetLocation.accessPoint == null)
+		if (location.accessPoint == null)
 		{
 			Debug.LogError("Attempted to move to a target location with a null access point.");
 			return;
 		}
 		
-		this.aStarAI.moveTo(targetLocation.accessPoint.transform.position);
+		this.aStarAI.moveTo(location.accessPoint.transform.position);
 		
 		this.movingToLocation = true;
 	}

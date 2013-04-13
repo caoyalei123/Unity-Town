@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * Represents a shop location.
+ * Shop locations remove cash from units.
+ */
 public class ShopLocation : BuildingLocation
 {
 	public override void Start()

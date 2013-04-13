@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * Represents a cash machine location.
+ * Cash machines provide cash to units.
+ */
 public class CashMachineLocation : AccessibleLocation
 {
 	public int cash;

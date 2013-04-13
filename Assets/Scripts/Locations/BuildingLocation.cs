@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * Represents a physical building location.
+ */
 public class BuildingLocation : AccessibleLocation
 {
 	public string name;

@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * Represents a base unit.
+ */
 public class Unit : MonoBehaviour
 {
 	public GameObject indicator;
