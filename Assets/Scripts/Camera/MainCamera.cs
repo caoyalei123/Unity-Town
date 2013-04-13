@@ -14,8 +14,14 @@ public class MainCamera : MonoBehaviour
 	public float edgePadding = 20f;
 	// The speed at which the camera moves.
 	public float moveSpeed = 10f;
+	// The speed at which the camera rotates.
+	public float rotateSpeed = 50f;
 	// The speed at which the camera zooms in on mouse scroll.
 	public float zoomSpeed = 50f;
+	
+	// Rotation angles.
+	private float rotationX;
+	private float rotationY;
 	
 	// Camera directions.
 	private Vector3 directionLeft = Vector3.left;
@@ -24,6 +30,12 @@ public class MainCamera : MonoBehaviour
 	private Vector3 directionDown = Vector3.down;
 	private Vector3 directionForward = Vector3.forward;
 	private Vector3 directionBack = Vector3.back;
+	
+	public void Awake()
+	{
+		this.rotationX = this.transform.localEulerAngles.x;
+		this.rotationY = this.transform.localEulerAngles.y;
+	}
 	
 	public void Update()
 	{
@@ -57,7 +69,16 @@ public class MainCamera : MonoBehaviour
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0)
 		{
 			// Move backward (zoom out.)
-			transform.Translate(this.directionBack * this.zoomSpeed * Time.deltaTime);
+			this.transform.Translate(this.directionBack * this.zoomSpeed * Time.deltaTime);
+		}
+		
+		if (Input.GetMouseButton(2))
+		{
+			// Rotate the camera.
+			this.rotationX += Input.GetAxis("Mouse Y") * this.rotateSpeed * Time.deltaTime;
+        	this.rotationY += Input.GetAxis("Mouse X") * this.rotateSpeed * Time.deltaTime;
+			
+			this.transform.localEulerAngles = new Vector3((this.rotationX % 360), (this.rotationY % 360), 0);
 		}
 	}
 }
