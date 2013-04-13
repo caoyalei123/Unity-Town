@@ -4,6 +4,8 @@ A very simple, experimental town simulator in Unity.
 
 ## Features
 
+* 3D building models.
+* Full camera control using the mouse.
 * Human units spend money at random shops.
 * Human units collect money from a cash machine.
 
