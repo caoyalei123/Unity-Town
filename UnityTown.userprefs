@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\LocationManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\UnitManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Units\Unit.cs" Line="11" Column="2" />
-      <File FileName="Assets\Scripts\Managers\LocationManager.cs" Line="3" Column="1" />
+      <File FileName="Assets\Scripts\GUI\HumanUnitGUI.cs" Line="22" Column="28" />
+      <File FileName="Assets\Scripts\Units\HumanUnit.cs" Line="27" Column="2" />
+      <File FileName="Assets\Scripts\Managers\UnitManager.cs" Line="12" Column="2" />
+      <File FileName="Assets\Scripts\Units\Unit.cs" Line="19" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
