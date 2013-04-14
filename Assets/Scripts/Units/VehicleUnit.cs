@@ -14,6 +14,7 @@ public class VehicleUnit : Unit
 	
 	private Vector3 directionForward = new Vector3(-1, 0, 0);
 	
+	private int raycastLayerMask;
 	private RaycastHit raycastHit;
 	
 	private PathNode targetNode;
@@ -24,6 +25,14 @@ public class VehicleUnit : Unit
 	private float pathLength = 0f;
 	private float pathCompletion = 0f;
 	
+	public override void Awake()
+	{
+		base.Awake();
+		
+		// Limit unit raycasting to Path Nodes layer.
+		this.raycastLayerMask = 1 << LayerMask.NameToLayer(LayerConstants.PATH_NODES);
+	}
+	
 	/**
 	 * Uses raycasting to detect path nodes.
 	 * Follows path if nodes are found.
@@ -32,7 +41,7 @@ public class VehicleUnit : Unit
 	{
 		if (!this.movingToNode)
 		{
-			if (Physics.Raycast(this.transform.position, this.directionForward, out this.raycastHit))
+			if (Physics.Raycast(this.transform.position, this.directionForward, out this.raycastHit, raycastLayerMask))
 			{
 				Debug.DrawLine(this.transform.position, this.raycastHit.point, Color.cyan, 0.2f);
 				
