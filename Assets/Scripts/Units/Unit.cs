@@ -7,6 +7,7 @@ using System.Collections;
 public class Unit : MonoBehaviour
 {
 	public GameObject indicator;
+	public Texture previewTexture;
 	
 	protected AstarAI aStarAI;
 	
