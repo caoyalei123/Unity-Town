@@ -12,8 +12,6 @@ public class VehicleUnit : Unit
 	// The max distance to check ahead for path nodes.
 	public float pathNodeMaxDistance = 20f;
 	
-	private Vector3 directionForward = new Vector3(-1, 0, 0);
-	
 	private int raycastLayerMask;
 	private RaycastHit raycastHit;
 	
@@ -41,7 +39,7 @@ public class VehicleUnit : Unit
 	{
 		if (!this.movingToNode)
 		{
-			if (Physics.Raycast(this.transform.position, this.directionForward, out this.raycastHit, raycastLayerMask))
+			if (Physics.Raycast(this.transform.position, -this.transform.right, out this.raycastHit, raycastLayerMask))
 			{
 				Debug.DrawLine(this.transform.position, this.raycastHit.point, Color.cyan, 0.2f);
 				
