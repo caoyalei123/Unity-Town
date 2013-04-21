@@ -6,7 +6,7 @@ using System.Collections;
  */
 public class BuildingLocation : AccessibleLocation
 {
-	public string name;
+	public string buildingName;
 	public string description;
 	public bool openToPublic;
 	
