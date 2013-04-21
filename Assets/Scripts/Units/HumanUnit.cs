@@ -7,7 +7,7 @@ using System.Collections;
  */
 public class HumanUnit : Unit
 {
-	public string name;
+	public string unitName;
 	public string bio;
 	public int age;
 	public int cash;
