@@ -29,14 +29,14 @@ public class AstarAI : MonoBehaviour
 	
 	public void MoveTo(Vector3 targetPosition)
 	{
-		Debug.Log("Human Unit move to x: " + targetPosition.x + ", y: " + targetPosition.y + ", z: " + targetPosition.z);
+		//Debug.Log("Human Unit move to x: " + targetPosition.x + ", y: " + targetPosition.y + ", z: " + targetPosition.z);
 		
 		seeker.StartPath(transform.position, targetPosition, OnPathComplete);
 	}
 
 	public void OnPathComplete(Path p)
 	{
-		Debug.Log("Yey, we got a path back. Did it have an error? " + p.error);
+		//Debug.Log("Yey, we got a path back. Did it have an error? " + p.error);
 		
 		if (!p.error)
 		{
@@ -58,7 +58,7 @@ public class AstarAI : MonoBehaviour
 
 		if (currentWaypoint >= path.vectorPath.Count)
 		{
-			Debug.Log("End Of Path Reached");
+			//Debug.Log("End Of Path Reached");
 			
 			pathComplete = true;
 			
