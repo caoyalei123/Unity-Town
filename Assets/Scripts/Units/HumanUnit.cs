@@ -37,9 +37,9 @@ public class HumanUnit : Unit
 	{
 		if (this.movingToLocation)
 		{
-			if (this.aStarAI.isPathComplete())
+			if (this.aStarAI.IsPathComplete())
 			{
-				this.onLocationReached();
+				this.OnLocationReached();
 			}
 		}
 		else
@@ -52,28 +52,28 @@ public class HumanUnit : Unit
 				
 				if (this.cash < HumanConstants.MIN_CASH)
 				{
-					this.goToCashMachine();
+					this.GoToCashMachine();
 				}
 				else
 				{
-					this.goToRandomShop();
+					this.GoToRandomShop();
 				}
 			}
 		}
 	}
 	
-	public override void selectUnit()
+	public override void SelectUnit()
 	{
-		base.selectUnit();
+		base.SelectUnit();
 		
-		this.unitManager.selectHuman(this);
+		this.unitManager.SelectHuman(this);
 	}
 	
-	public void goToCashMachine()
+	public void GoToCashMachine()
 	{
 		Debug.Log("Going to cash machine. cash = " + this.cash);
 		
-		GameObject cashMachine = this.locationManager.getCashMachines()[0];
+		GameObject cashMachine = this.locationManager.GetCashMachines()[0];
 		
 		if (cashMachine == null)
 		{
@@ -83,14 +83,14 @@ public class HumanUnit : Unit
 		
 		this.targetLocation = (AccessibleLocation) cashMachine.GetComponent("CashMachineLocation");
 		
-		this.goToLocation(this.targetLocation);
+		this.GoToLocation(this.targetLocation);
 	}
 	
-	public void goToRandomShop()
+	public void GoToRandomShop()
 	{
 		Debug.Log("Going to random shop. cash = " + this.cash);
 		
-		GameObject shop = this.locationManager.getRandomShop();
+		GameObject shop = this.locationManager.GetRandomShop();
 		
 		if (shop == null)
 		{
@@ -100,10 +100,10 @@ public class HumanUnit : Unit
 		
 		this.targetLocation = (AccessibleLocation) shop.GetComponent("ShopLocation");
 		
-		this.goToLocation(this.targetLocation);
+		this.GoToLocation(this.targetLocation);
 	}
 	
-	private void goToLocation(AccessibleLocation location)
+	private void GoToLocation(AccessibleLocation location)
 	{
 		if (location == null)
 		{
@@ -117,14 +117,14 @@ public class HumanUnit : Unit
 			return;
 		}
 		
-		this.aStarAI.moveTo(location.accessPoint.transform.position);
+		this.aStarAI.MoveTo(location.accessPoint.transform.position);
 		
 		this.movingToLocation = true;
 	}
 	
-	private void onLocationReached()
+	private void OnLocationReached()
 	{
-		this.targetLocation.runHumanInteraction(this);
+		this.targetLocation.RunHumanInteraction(this);
 		
 		this.targetLocation = null;
 		this.movingToLocation = false;

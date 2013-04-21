@@ -19,7 +19,7 @@ public class CashMachineLocation : AccessibleLocation
 		base.Update();
 	}
 	
-	public override void runHumanInteraction(HumanUnit humanUnit)
+	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
 		humanUnit.cash += 100;
 		this.cash -= 100;

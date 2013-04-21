@@ -14,7 +14,7 @@ public class LocationManager : MonoBehaviour
 		this.shops = GameObject.FindGameObjectsWithTag(TagConstants.SHOPS);
 		this.cashMachines = GameObject.FindGameObjectsWithTag(TagConstants.CASH_MACHINES);
 		
-		Debug.Log("Started with " + this.getCashMachineCount() + " cash machines.");
+		Debug.Log("Started with " + this.GetCashMachineCount() + " cash machines.");
 	}
 	
 	public void Start()
@@ -22,46 +22,46 @@ public class LocationManager : MonoBehaviour
 	
 	}
 	
-	public void Update ()
+	public void Update()
 	{
 	
 	}
 	
-	public GameObject[] getShops()
+	public GameObject[] GetShops()
 	{
 		return this.shops;
 	}
 	
-	public GameObject[] getCashMachines()
+	public GameObject[] GetCashMachines()
 	{
 		return this.cashMachines;
 	}
 	
 	// TODO
-	public GameObject getClosestShop(Vector3 position)
+	public GameObject GetClosestShop(Vector3 position)
 	{
 		return null;
 	}
 	
 	// TODO
-	public GameObject getClosestCashMachine(Vector3 position)
+	public GameObject GetClosestCashMachine(Vector3 position)
 	{
 		return null;
 	}
 	
-	public GameObject getRandomShop()
+	public GameObject GetRandomShop()
 	{
 		int index = Random.Range(0, (this.shops.Length - 1));
 		
 		return this.shops[index];
 	}
 	
-	public int getShopCount()
+	public int GetShopCount()
 	{
 		return this.shops.Length;
 	}
 	
-	public int getCashMachineCount()
+	public int GetCashMachineCount()
 	{
 		return this.cashMachines.Length;
 	}

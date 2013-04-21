@@ -18,5 +18,5 @@ public abstract class AccessibleLocation : MonoBehaviour
 	
 	}
 	
-	public abstract void runHumanInteraction(HumanUnit humanUnit);
+	public abstract void RunHumanInteraction(HumanUnit humanUnit);
 }

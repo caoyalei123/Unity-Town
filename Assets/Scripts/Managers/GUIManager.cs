@@ -8,13 +8,13 @@ public class GUIManager : MonoBehaviour
 {
 	public HumanUnitGUI humanUnitGUI;
 	
-	public void showHumanUnitGUI(HumanUnit human)
+	public void ShowHumanUnitGUI(HumanUnit human)
 	{
 		this.humanUnitGUI.human = human;
 		this.humanUnitGUI.gameObject.SetActive(true);
 	}
 	
-	public void hideHumanUnitGUI()
+	public void HideHumanUnitGUI()
 	{
 		this.humanUnitGUI.human = null;
 		this.humanUnitGUI.gameObject.SetActive(false);

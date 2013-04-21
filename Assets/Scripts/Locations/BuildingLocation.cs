@@ -20,7 +20,7 @@ public class BuildingLocation : AccessibleLocation
 		base.Update();
 	}
 	
-	public override void runHumanInteraction(HumanUnit humanUnit)
+	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
 		
 	}

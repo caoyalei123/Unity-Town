@@ -49,7 +49,7 @@ public class VehicleUnit : Unit
 					
 					PathNode pathNode = (PathNode) this.raycastHit.collider.gameObject.GetComponent("PathNode");
 					
-					this.moveToNode(pathNode);
+					this.MoveToNode(pathNode);
 				}
 			}
 		}
@@ -63,12 +63,12 @@ public class VehicleUnit : Unit
 			
 			if (this.pathCompletion >= 1)
 			{
-				this.onNodeReached();
+				this.OnNodeReached();
 			}
 		}
 	}
 	
-	private void moveToNode(PathNode pathNode)
+	private void MoveToNode(PathNode pathNode)
 	{
 		this.targetNode = pathNode;
 		
@@ -80,7 +80,7 @@ public class VehicleUnit : Unit
 		this.movingToNode = true;
 	}
 	
-	private void onNodeReached()
+	private void OnNodeReached()
 	{
 		Debug.Log("Vehicle reached target node.");
 		

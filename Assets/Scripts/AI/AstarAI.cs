@@ -27,14 +27,14 @@ public class AstarAI : MonoBehaviour
 		controller = GetComponent<CharacterController>();
 	}
 	
-	public void moveTo(Vector3 targetPosition)
+	public void MoveTo(Vector3 targetPosition)
 	{
 		Debug.Log("Human Unit move to x: " + targetPosition.x + ", y: " + targetPosition.y + ", z: " + targetPosition.z);
 		
-		seeker.StartPath(transform.position, targetPosition, onPathComplete);
+		seeker.StartPath(transform.position, targetPosition, OnPathComplete);
 	}
 
-	public void onPathComplete(Path p)
+	public void OnPathComplete(Path p)
 	{
 		Debug.Log("Yey, we got a path back. Did it have an error? " + p.error);
 		
@@ -79,7 +79,7 @@ public class AstarAI : MonoBehaviour
 		}
 	}
 	
-	public bool isPathComplete()
+	public bool IsPathComplete()
 	{
 		return this.pathComplete;
 	}

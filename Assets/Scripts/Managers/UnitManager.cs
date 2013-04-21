@@ -18,39 +18,39 @@ public class UnitManager : MonoBehaviour
 		
 		this.humans = GameObject.FindGameObjectsWithTag(TagConstants.HUMANS);
 		
-		Debug.Log("Started with " + this.getHumanCount() + " humans.");
+		Debug.Log("Started with " + this.GetHumanCount() + " humans.");
 	}
 	
 	/**
 	 * Selected a given human unit.
 	 */
-	public void selectHuman(HumanUnit human)
+	public void SelectHuman(HumanUnit human)
 	{
 		this.selectedHuman = human;
 		
-		this.guiManager.showHumanUnitGUI(human);
+		this.guiManager.ShowHumanUnitGUI(human);
 	}
 	
 	/**
 	 * Deselects the currently selected human unit.
 	 */
-	public void deselectHuman()
+	public void DeselectHuman()
 	{
 		if (this.selectedHuman != null)
 		{
-			this.selectedHuman.deselectUnit();
+			this.selectedHuman.DeselectUnit();
 			this.selectedHuman = null;
 		}
 		
-		this.guiManager.hideHumanUnitGUI();
+		this.guiManager.HideHumanUnitGUI();
 	}
 	
-	public GameObject[] getHumans()
+	public GameObject[] GetHumans()
 	{
 		return this.humans;
 	}
 	
-	public int getHumanCount()
+	public int GetHumanCount()
 	{
 		return this.humans.Length;
 	}

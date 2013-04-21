@@ -17,8 +17,10 @@ public class ShopLocation : BuildingLocation
 		base.Update();
 	}
 	
-	public override void runHumanInteraction(HumanUnit humanUnit)
+	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
+		base.RunHumanInteraction(humanUnit);
+		
 		humanUnit.cash -= 20;
 	}
 }

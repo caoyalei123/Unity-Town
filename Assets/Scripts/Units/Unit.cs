@@ -20,34 +20,34 @@ public class Unit : MonoBehaviour
 	
 	public virtual void Start()
 	{
-		this.hideIndicator();
+		this.HideIndicator();
 	}
 	
 	public void OnMouseUp()
 	{
-		this.selectUnit();
+		this.SelectUnit();
 	}
 	
-	public virtual void selectUnit()
+	public virtual void SelectUnit()
 	{
-		this.showIndicator();
+		this.ShowIndicator();
 		
 		this.selected = true;
 	}
 	
-	public void deselectUnit()
+	public void DeselectUnit()
 	{
-		this.hideIndicator();
+		this.HideIndicator();
 		
 		this.selected = false;
 	}
 	
-	private void showIndicator()
+	private void ShowIndicator()
 	{
 		this.indicator.renderer.enabled = true;
 	}
 	
-	private void hideIndicator()
+	private void HideIndicator()
 	{
 		this.indicator.renderer.enabled = false;
 	}
