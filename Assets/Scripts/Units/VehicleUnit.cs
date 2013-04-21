@@ -28,7 +28,7 @@ public class VehicleUnit : Unit
 		base.Awake();
 		
 		// Limit unit raycasting to Path Nodes layer.
-		this.raycastLayerMask = 1 << LayerMask.NameToLayer(LayerConstants.PATH_NODES);
+		this.raycastLayerMask = (1 << LayerMask.NameToLayer(LayerConstants.PATH_NODES));
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class VehicleUnit : Unit
 	{
 		if (!this.movingToNode)
 		{
-			if (Physics.Raycast(this.transform.position, -this.transform.right, out this.raycastHit, raycastLayerMask))
+			if (Physics.Raycast(this.transform.position, -this.transform.right, out this.raycastHit, this.pathNodeMaxDistance, raycastLayerMask))
 			{
 				Debug.DrawLine(this.transform.position, this.raycastHit.point, Color.cyan, 0.2f);
 				
