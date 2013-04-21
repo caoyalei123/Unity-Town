@@ -15,7 +15,7 @@ public class HumanUnitGUI : MonoBehaviour
 		GUI.DrawTexture(new Rect (20, 40, 50, 50), this.human.previewTexture);
 		
 		GUI.Label(new Rect (90, 40, 60, 20), "Name:");
-		GUI.Label(new Rect (140, 40, 60, 20), this.human.name);
+		GUI.Label(new Rect (140, 40, 60, 20), this.human.unitName);
 		
 		GUI.Label(new Rect (90, 60, 60, 20), "Age:");
 		GUI.Label(new Rect (140, 60, 60, 20), this.human.age.ToString());
