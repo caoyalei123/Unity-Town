@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * Represents a location which is accessible to units.
@@ -9,8 +10,11 @@ public abstract class AccessibleLocation : MonoBehaviour
 	// The game object a unit must reach to interact
 	// with this location.
 	public GameObject accessPoint;
+	// The unit stat buffs this location provides.
+	public Dictionary<string, float> unitStatBuffs;
+	
 	// True if this location is currently active.
-	public bool active = true;
+	protected bool activeLocation = true;
 	
 	public virtual void Start()
 	{
@@ -29,5 +33,11 @@ public abstract class AccessibleLocation : MonoBehaviour
 	 * Interactions may affect the state of both the unit
 	 * and the location.
 	 */
-	public abstract void RunHumanInteraction(HumanUnit humanUnit);
+	public virtual void RunHumanInteraction(HumanUnit humanUnit)
+	{
+		foreach (string statName in this.unitStatBuffs.Keys)
+		{
+			humanUnit.ApplyStatBuff(statName, this.unitStatBuffs[statName]);
+		}
+	}
 }
