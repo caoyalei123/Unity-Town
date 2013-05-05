@@ -7,6 +7,8 @@ using System.Collections;
  */
 public class ShopLocation : BuildingLocation
 {
+	public int interactionCost = 20;
+	
 	public override void Start()
 	{
 		base.Start();
@@ -21,6 +23,9 @@ public class ShopLocation : BuildingLocation
 	{
 		base.RunHumanInteraction(humanUnit);
 		
-		humanUnit.cash -= 20;
+		if (humanUnit.cash >= this.interactionCost)
+		{
+			humanUnit.cash -= this.interactionCost;
+		}
 	}
 }
