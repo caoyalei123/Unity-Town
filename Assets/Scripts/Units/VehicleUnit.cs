@@ -84,6 +84,8 @@ public class VehicleUnit : Unit
 	{
 		Debug.Log("Vehicle reached target node.");
 		
+		this.transform.rotation = this.targetNode.transform.rotation;
+		
 		this.targetNode = null;
 		
 		this.movingToNode = false;
