@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * Represents a human unit.
@@ -12,6 +13,9 @@ public class HumanUnit : Unit
 	public int age;
 	public int cash;
 	
+	// This unit's stats.
+	public Dictionary<string, float> stats;
+	
 	private bool movingToLocation;
 	private AccessibleLocation targetLocation;
 	
@@ -23,6 +27,10 @@ public class HumanUnit : Unit
 	public override void Awake()
 	{
 		base.Awake();
+		
+		this.stats = new Dictionary<string, float>();
+		this.stats.Add(UnitStatConstants.ENERGY, 100);
+		this.stats.Add(UnitStatConstants.MOOD, 50);
 	}
 	
 	public override void Start()
@@ -67,6 +75,24 @@ public class HumanUnit : Unit
 		base.SelectUnit();
 		
 		this.unitManager.SelectHuman(this);
+	}
+	
+	/**
+	 * Applies a buff to one of this unit's stats.
+	 * 
+	 * @param string statName - The name of the stat.
+	 * @param float buff - The buff value to apply.
+	 */
+	public void ApplyStatBuff(string statName, float buff)
+	{
+		if (this.stats.ContainsKey(statName))
+		{
+			this.stats[statName] += buff;
+		}
+		else
+		{
+			this.stats.Add(statName, buff);
+		}
 	}
 	
 	public void GoToCashMachine()
