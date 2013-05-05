@@ -9,6 +9,15 @@ public class ShopLocation : BuildingLocation
 {
 	public int interactionCost = 20;
 	
+	public void Awake()
+	{
+		// TODO: Move stat buffs / other location data into JSON file.
+		
+		this.unitStatBuffs = new System.Collections.Generic.Dictionary<string, float>();
+		this.unitStatBuffs.Add(UnitStatConstants.ENERGY, -5);
+		this.unitStatBuffs.Add(UnitStatConstants.MOOD, 10);
+	}
+	
 	public override void Start()
 	{
 		base.Start();
@@ -21,10 +30,10 @@ public class ShopLocation : BuildingLocation
 	
 	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
-		base.RunHumanInteraction(humanUnit);
-		
 		if (humanUnit.cash >= this.interactionCost)
 		{
+			base.RunHumanInteraction(humanUnit);
+			
 			humanUnit.cash -= this.interactionCost;
 		}
 	}
