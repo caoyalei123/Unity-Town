@@ -8,7 +8,7 @@ public class BuildingLocation : AccessibleLocation
 {
 	public string buildingName;
 	public string description;
-	public bool openToPublic;
+	public bool openToPublic = true;
 	
 	public override void Start()
 	{
