@@ -7,7 +7,10 @@ using System.Collections;
  */
 public class CashMachineLocation : AccessibleLocation
 {
+	// The amount of cash this machine currently contains.
 	public int cash;
+	// The amount of cash given to a unit during an interaction.
+	public int cashPerInteraction = 100;
 	
 	public override void Start()
 	{
@@ -19,9 +22,24 @@ public class CashMachineLocation : AccessibleLocation
 		base.Update();
 	}
 	
+	/**
+	 * Increases the cash property of the human unit
+	 * and decreases the cash property of this location
+	 * by the current cashPerInteraction value.
+	 */
 	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
-		humanUnit.cash += 100;
-		this.cash -= 100;
+		if (this.active)
+		{
+			if (this.cash >= this.cashPerInteraction)
+			{
+				humanUnit.cash += this.cashPerInteraction;
+				this.cash -= this.cashPerInteraction;
+			}
+			else
+			{
+				this.active = false;
+			}
+		}
 	}
 }
