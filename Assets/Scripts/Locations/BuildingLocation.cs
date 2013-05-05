@@ -22,6 +22,6 @@ public class BuildingLocation : AccessibleLocation
 	
 	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
-		
+		base.RunHumanInteraction(humanUnit);
 	}
 }
