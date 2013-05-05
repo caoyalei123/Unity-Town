@@ -29,7 +29,7 @@ public class CashMachineLocation : AccessibleLocation
 	 */
 	public override void RunHumanInteraction(HumanUnit humanUnit)
 	{
-		if (this.active)
+		if (this.activeLocation)
 		{
 			if (this.cash >= this.cashPerInteraction)
 			{
@@ -38,7 +38,7 @@ public class CashMachineLocation : AccessibleLocation
 			}
 			else
 			{
-				this.active = false;
+				this.activeLocation = false;
 			}
 		}
 	}
