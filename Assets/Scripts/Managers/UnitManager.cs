@@ -1,24 +1,60 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * Provides access to all existing units.
  */
 public class UnitManager : MonoBehaviour
 {
+	public int maxHumans = 10;
+	
+	public float spawnRate = 1; // seconds.
+	
+	// The prefab all human units are instantiated from.
+	public HumanUnit humanUnitPrefab;
+	
 	private GUIManager guiManager;
 	
 	private HumanUnit selectedHuman = null;
 	
-	private GameObject[] humans;
+	private List<HumanUnit> humanUnits = new List<HumanUnit>();
+	
+	private float tSpawnDelta;
 	
 	public void Awake()
 	{
 		this.guiManager = (GUIManager) Camera.main.GetComponent("GUIManager");
 		
-		this.humans = GameObject.FindGameObjectsWithTag(TagConstants.HUMANS);
+		// Detect and parse any existing human units.
 		
-		Debug.Log("Started with " + this.GetHumanCount() + " humans.");
+		GameObject[] humanUnitObjects = GameObject.FindGameObjectsWithTag(TagConstants.HUMANS);
+		
+		if (humanUnitObjects != null)
+		{
+			HumanUnit currentHumanUnit;
+			
+			for (int i = 0; i < humanUnitObjects.Length; i++)
+			{
+				currentHumanUnit = (HumanUnit) humanUnitObjects[i].GetComponent("HumanUnit");
+				
+				if (currentHumanUnit != null)
+				{
+					this.humanUnits.Add(currentHumanUnit);
+				}
+				else
+				{
+					Debug.LogError("Game Object " + humanUnitObjects[i].name + " is missing HumanUnit component.");
+				}
+			}
+		}
+		
+		Debug.Log("Started with " + this.GetHumanCount() + " human units.");
+	}
+	
+	public void Update()
+	{
+		
 	}
 	
 	/**
@@ -45,13 +81,13 @@ public class UnitManager : MonoBehaviour
 		this.guiManager.HideHumanUnitGUI();
 	}
 	
-	public GameObject[] GetHumans()
+	public List<HumanUnit> GetHumans()
 	{
-		return this.humans;
+		return this.humanUnits;
 	}
 	
 	public int GetHumanCount()
 	{
-		return this.humans.Length;
+		return this.humanUnits.Count;
 	}
 }
