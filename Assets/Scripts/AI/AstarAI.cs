@@ -23,17 +23,15 @@ public class AstarAI : MonoBehaviour
 	
 	public void Awake()
 	{
-		seeker = GetComponent<Seeker>();
-		controller = GetComponent<CharacterController>();
-		
-		
+		this.seeker = GetComponent<Seeker>();
+		this.controller = GetComponent<CharacterController>();
 	}
 	
 	public void MoveTo(Vector3 targetPosition)
 	{
 		//Debug.Log("Human Unit move to x: " + targetPosition.x + ", y: " + targetPosition.y + ", z: " + targetPosition.z);
 		
-		seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+		this.seeker.StartPath(this.transform.position, targetPosition, this.OnPathComplete);
 		
 		this.pathComplete = false;
 	}
@@ -44,11 +42,9 @@ public class AstarAI : MonoBehaviour
 		
 		if (!p.error)
 		{
-			path = p;
+			this.path = p;
 			// Reset the waypoint counter
-			currentWaypoint = 0;
-			
-			pathComplete = true;
+			this.currentWaypoint = 0;
 		}
 		else
 		{
@@ -58,31 +54,33 @@ public class AstarAI : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		if (path == null)
+		if (this.path == null)
 		{
 			// We have no path to move after yet
 			return;
 		}
-
-		if (currentWaypoint >= path.vectorPath.Count)
+		
+		if (this.currentWaypoint >= this.path.vectorPath.Count)
 		{
 			//Debug.Log("End Of Path Reached");
 			
-			//pathComplete = true;
+			this.path = null;
+			this.pathComplete = true;
+			this.currentWaypoint = 0;
 			
 			return;
 		}
 
 		// Direction to the next waypoint
-		Vector3 dir = (path.vectorPath[currentWaypoint]-transform.position).normalized;
+		Vector3 dir = (this.path.vectorPath[this.currentWaypoint] - this.transform.position).normalized;
 		dir *= speed * Time.fixedDeltaTime;
-		controller.SimpleMove(dir);
+		this.controller.SimpleMove(dir);
 
 		// Check if we are close enough to the next waypoint
 		// If we are, proceed to follow the next waypoint
-		if (Vector3.Distance(transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance)
+		if (Vector3.Distance(this.transform.position, this.path.vectorPath[this.currentWaypoint]) < this.nextWaypointDistance)
 		{
-			currentWaypoint++;
+			this.currentWaypoint++;
 			return;
 		}
 	}
