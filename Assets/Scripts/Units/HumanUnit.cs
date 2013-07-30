@@ -31,6 +31,9 @@ public class HumanUnit : Unit
 		this.stats = new Dictionary<string, float>();
 		this.stats.Add(UnitStatConstants.ENERGY, 100);
 		this.stats.Add(UnitStatConstants.MOOD, 50);
+		
+		this.movingToLocation = false;
+		this.movementDelta = HumanConstants.MOVEMENT_DELAY;
 	}
 	
 	public override void Start()
