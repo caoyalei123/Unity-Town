@@ -9,10 +9,12 @@ public class UnitManager : MonoBehaviour
 {
 	public int maxHumans = 10;
 	
-	public float spawnRate = 1; // seconds.
+	public float spawnDelay = 2; // seconds.
 	
 	// The prefab all human units are instantiated from.
 	public HumanUnit humanUnitPrefab;
+	
+	public GameObject humanUnitSpawnNode;
 	
 	private GUIManager guiManager;
 	
@@ -54,7 +56,17 @@ public class UnitManager : MonoBehaviour
 	
 	public void Update()
 	{
+		tSpawnDelta += Time.deltaTime;
 		
+		if (this.GetHumanCount() < this.maxHumans)
+		{
+			if (tSpawnDelta >= this.spawnDelay)
+			{
+				this.SpawnHumanUnit();
+				
+				this.tSpawnDelta = 0;
+			}
+		}
 	}
 	
 	/**
@@ -89,5 +101,20 @@ public class UnitManager : MonoBehaviour
 	public int GetHumanCount()
 	{
 		return this.humanUnits.Count;
+	}
+	
+	private void SpawnHumanUnit()
+	{
+		if (this.humanUnitPrefab == null)
+		{
+			Debug.LogError("Cannot instantiate human unit from null prefab.");
+			return;
+		}
+		
+		HumanUnit humanUnit = (HumanUnit) Instantiate(this.humanUnitPrefab,
+			this.humanUnitSpawnNode.transform.position,
+			this.humanUnitPrefab.transform.rotation);
+		
+		this.humanUnits.Add(humanUnit);
 	}
 }
