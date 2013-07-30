@@ -25,6 +25,8 @@ public class AstarAI : MonoBehaviour
 	{
 		seeker = GetComponent<Seeker>();
 		controller = GetComponent<CharacterController>();
+		
+		
 	}
 	
 	public void MoveTo(Vector3 targetPosition)
@@ -32,6 +34,8 @@ public class AstarAI : MonoBehaviour
 		//Debug.Log("Human Unit move to x: " + targetPosition.x + ", y: " + targetPosition.y + ", z: " + targetPosition.z);
 		
 		seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+		
+		this.pathComplete = false;
 	}
 
 	public void OnPathComplete(Path p)
@@ -44,7 +48,11 @@ public class AstarAI : MonoBehaviour
 			// Reset the waypoint counter
 			currentWaypoint = 0;
 			
-			pathComplete = false;
+			pathComplete = true;
+		}
+		else
+		{
+			Debug.LogError("Path finding error: " + p.errorLog);
 		}
 	}
 
@@ -60,7 +68,7 @@ public class AstarAI : MonoBehaviour
 		{
 			//Debug.Log("End Of Path Reached");
 			
-			pathComplete = true;
+			//pathComplete = true;
 			
 			return;
 		}
