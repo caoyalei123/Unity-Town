@@ -52,6 +52,10 @@ public class UnitManager : MonoBehaviour
 		}
 		
 		Debug.Log("Started with " + this.GetHumanCount() + " human units.");
+		
+		// Prevent units colliding with each other.
+		int unitLayerMask = LayerMask.NameToLayer(LayerConstants.UNITS);
+		Physics.IgnoreLayerCollision(unitLayerMask, unitLayerMask);
 	}
 	
 	public void Update()
