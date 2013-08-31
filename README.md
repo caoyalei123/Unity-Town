@@ -10,6 +10,8 @@ A very simple, experimental town simulator in Unity.
 * Human units collect money from a cash machine.
 * Vehicle units use the road network.
 
+Progress screenshots: https://github.com/ruscoe/Unity-Town/wiki/Progress-Screen-Shots
+
 ## Requirements
 
 * Unity (4.2 minimum:) http://unity3d.com/
